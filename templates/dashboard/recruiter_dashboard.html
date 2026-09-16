@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HireHub - Recruiter Dashboard</title>
+</head>
+
+<body>
+
+    <h1>HireHub</h1>
+
+    <h2>Recruiter Dashboard</h2>
+
+    <p>
+        Welcome,
+        <strong>{{ request.user.username }}</strong>
+    </p>
+
+    <hr>
+
+    <h3>Recruiter Statistics</h3>
+
+    <p>
+        <strong>Total Companies:</strong>
+        {{ total_companies }}
+    </p>
+
+    <p>
+        <strong>Total Jobs:</strong>
+        {{ total_jobs }}
+    </p>
+
+    <p>
+        <strong>Total Applications:</strong>
+        {{ total_applications }}
+    </p>
+
+    <p>
+        <strong>Pending Applications:</strong>
+        {{ pending_applications }}
+    </p>
+
+    <p>
+        <strong>Shortlisted:</strong>
+        {{ shortlisted_applications }}
+    </p>
+
+    <p>
+        <strong>Selected:</strong>
+        {{ selected_applications }}
+    </p>
+
+    <p>
+        <strong>Rejected:</strong>
+        {{ rejected_applications }}
+    </p>
+
+    <hr>
+
+    <h3>Quick Links</h3>
+
+    <a href="{% url 'company_list' %}">
+        My Companies
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'company_create' %}">
+        Create Company
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'job_list' %}">
+        My Jobs
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'job_create' %}">
+        Create Job
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'recruiter_applications' %}">
+        Received Applications
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'profile' %}">
+        My Profile
+    </a>
+
+    <br><br>
+
+    <a href="/">
+        Home
+    </a>
+
+</body>
+</html>

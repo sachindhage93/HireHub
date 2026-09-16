@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HireHub - Profile</title>
+</head>
+
+<body>
+
+    <h1>HireHub</h1>
+
+    <h2>My Profile</h2>
+
+    <p>
+        <strong>Username:</strong>
+        {{ profile.user.username }}
+    </p>
+
+    <p>
+        <strong>Email:</strong>
+        {{ profile.user.email }}
+    </p>
+
+    <p>
+        <strong>User Type:</strong>
+        {{ profile.get_user_type_display }}
+    </p>
+
+    <p>
+        <strong>Phone:</strong>
+        {{ profile.phone|default:"Not added" }}
+    </p>
+
+    <p>
+        <strong>Location:</strong>
+        {{ profile.location|default:"Not added" }}
+    </p>
+
+    <p>
+        <strong>Skills:</strong>
+        {{ profile.skills|default:"Not added" }}
+    </p>
+
+    <p>
+        <strong>Experience:</strong>
+        {{ profile.experience }} years
+    </p>
+
+
+    {% if profile.resume %}
+
+        <p>
+            <strong>Resume:</strong>
+
+            <a href="{{ profile.resume.url }}" target="_blank">
+                View Resume
+            </a>
+        </p>
+
+    {% else %}
+
+        <p>
+            <strong>Resume:</strong>
+            Not uploaded
+        </p>
+
+    {% endif %}
+
+
+    {% if profile.profile_picture %}
+
+        <p>
+            <strong>Profile Picture:</strong>
+        </p>
+
+        <img
+            src="{{ profile.profile_picture.url }}"
+            alt="Profile Picture"
+            width="150"
+        >
+
+    {% else %}
+
+        <p>
+            <strong>Profile Picture:</strong>
+            Not uploaded
+        </p>
+
+    {% endif %}
+
+
+    <br>
+
+    <a href="{% url 'profile_edit' %}">
+        Edit Profile
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'role_home' %}">
+        Dashboard
+    </a>
+
+    <br><br>
+
+    <a href="/">
+        Home
+    </a>
+
+</body>
+
+</html>

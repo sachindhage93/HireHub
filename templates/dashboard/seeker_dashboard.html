@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HireHub - Job Seeker Dashboard</title>
+</head>
+
+<body>
+
+    <h1>HireHub</h1>
+
+    <h2>Job Seeker Dashboard</h2>
+
+    <p>
+        Welcome,
+        <strong>{{ request.user.username }}</strong>
+    </p>
+
+    <hr>
+
+    <h3>Application Statistics</h3>
+
+    <p>
+        <strong>Total Applications:</strong>
+        {{ total_applications }}
+    </p>
+
+    <p>
+        <strong>Pending:</strong>
+        {{ pending_applications }}
+    </p>
+
+    <p>
+        <strong>Shortlisted:</strong>
+        {{ shortlisted_applications }}
+    </p>
+
+    <p>
+        <strong>Selected:</strong>
+        {{ selected_applications }}
+    </p>
+
+    <p>
+        <strong>Rejected:</strong>
+        {{ rejected_applications }}
+    </p>
+
+    <hr>
+
+    <h3>Quick Links</h3>
+
+    <a href="{% url 'profile' %}">
+        My Profile
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'profile_edit' %}">
+        Edit Profile
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'job_list' %}">
+        Browse Jobs
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'my_applications' %}">
+        My Applications
+    </a>
+
+    <br><br>
+
+    <a href="/">
+        Home
+    </a>
+
+</body>
+</html>

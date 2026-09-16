@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>HireHub - Jobs</title>
+
+</head>
+
+<body>
+
+    <h1>HireHub</h1>
+
+    <h2>Available Jobs</h2>
+
+
+    <!-- SEARCH AND FILTER -->
+
+    <form method="GET">
+
+        <p>
+            <label>Search:</label>
+            {{ search_form.q }}
+        </p>
+
+
+        <p>
+            <label>Location:</label>
+            {{ search_form.location }}
+        </p>
+
+
+        <p>
+            <label>Job Type:</label>
+            {{ search_form.job_type }}
+        </p>
+
+
+        <p>
+            <label>Company:</label>
+            {{ search_form.company }}
+        </p>
+
+
+        <button type="submit">
+            Search / Filter
+        </button>
+
+        <a href="{% url 'job_list' %}">
+            Clear Filters
+        </a>
+
+    </form>
+
+
+    <hr>
+
+
+    <!-- CREATE JOB -->
+
+    {% if user.is_authenticated and user.profile.user_type == 'recruiter' %}
+
+        <a href="{% url 'job_create' %}">
+            Create New Job
+        </a>
+
+        <br><br>
+
+    {% endif %}
+
+
+    <!-- JOB LIST -->
+
+    {% if jobs %}
+
+        {% for job in jobs %}
+
+            <hr>
+
+            <h3>
+                {{ job.title }}
+            </h3>
+
+
+            <p>
+                <strong>Company:</strong>
+                {{ job.company.name }}
+            </p>
+
+
+            <p>
+                <strong>Location:</strong>
+                {{ job.location }}
+            </p>
+
+
+            <p>
+                <strong>Job Type:</strong>
+                {{ job.get_job_type_display }}
+            </p>
+
+
+            <p>
+                <strong>Salary:</strong>
+
+                {% if job.salary %}
+                    ₹{{ job.salary }}
+                {% else %}
+                    Not specified
+                {% endif %}
+
+            </p>
+
+
+            <p>
+                <strong>Experience:</strong>
+                {{ job.experience_required }} years
+            </p>
+
+
+            <p>
+                <strong>Deadline:</strong>
+
+                {% if job.deadline %}
+                    {{ job.deadline }}
+                {% else %}
+                    Not specified
+                {% endif %}
+
+            </p>
+
+
+            <p>
+                <strong>Description:</strong>
+                {{ job.description }}
+            </p>
+
+
+            <a href="{% url 'job_detail' job.id %}">
+                View Details
+            </a>
+
+
+            {% if user == job.recruiter %}
+
+                <br><br>
+
+                <a href="{% url 'job_edit' job.id %}">
+                    Edit Job
+                </a>
+
+                <br><br>
+
+                <a href="{% url 'job_delete' job.id %}">
+                    Delete Job
+                </a>
+
+            {% endif %}
+
+
+        {% endfor %}
+
+
+        <!-- PAGINATION -->
+
+        <hr>
+
+        <h3>Page Navigation</h3>
+
+
+        {% if page_obj.has_previous %}
+
+            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}page={{ page_obj.previous_page_number }}">
+
+                Previous
+
+            </a>
+
+        {% endif %}
+
+
+        <span>
+
+            Page {{ page_obj.number }}
+            of {{ page_obj.paginator.num_pages }}
+
+        </span>
+
+
+        {% if page_obj.has_next %}
+
+            <a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}page={{ page_obj.next_page_number }}">
+
+                Next
+
+            </a>
+
+        {% endif %}
+
+
+    {% else %}
+
+        <p>
+            No jobs found.
+        </p>
+
+    {% endif %}
+
+
+    <br><br>
+
+    <a href="{% url 'role_home' %}">
+        Dashboard
+    </a>
+
+    <br><br>
+
+    <a href="/">
+        Home
+    </a>
+
+
+</body>
+
+</html>

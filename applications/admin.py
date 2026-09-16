@@ -1,0 +1,23 @@
+from django.contrib import admin
+from .models import Application
+
+
+@admin.register(Application)
+class ApplicationAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'seeker',
+        'job',
+        'status',
+        'applied_at'
+    )
+
+    list_filter = (
+        'status',
+        'applied_at'
+    )
+
+    search_fields = (
+        'seeker__username',
+        'job__title'
+    )

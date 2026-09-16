@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HireHub - Companies</title>
+</head>
+
+<body>
+
+    <h1>HireHub</h1>
+
+    <h2>My Companies</h2>
+
+    <a href="{% url 'company_create' %}">
+        Create New Company
+    </a>
+
+    <br><br>
+
+    {% if companies %}
+
+        {% for company in companies %}
+
+            <hr>
+
+            <h3>{{ company.name }}</h3>
+
+            <p>
+                <strong>Description:</strong>
+                {{ company.description|default:"Not added" }}
+            </p>
+
+            <p>
+                <strong>Website:</strong>
+
+                {% if company.website %}
+
+                    <a href="{{ company.website }}" target="_blank">
+                        {{ company.website }}
+                    </a>
+
+                {% else %}
+
+                    Not added
+
+                {% endif %}
+            </p>
+
+            <p>
+                <strong>Location:</strong>
+                {{ company.location }}
+            </p>
+
+            {% if company.logo %}
+
+                <p>
+                    <strong>Company Logo:</strong>
+                </p>
+
+                <img
+                    src="{{ company.logo.url }}"
+                    alt="Company Logo"
+                    width="150"
+                >
+
+            {% else %}
+
+                <p>
+                    <strong>Company Logo:</strong>
+                    Not uploaded
+                </p>
+
+            {% endif %}
+
+            <br><br>
+
+            <a href="{% url 'company_edit' company.id %}">
+                Edit Company
+            </a>
+
+            <br><br>
+
+            <a href="{% url 'company_delete' company.id %}">
+                Delete Company
+            </a>
+
+            <br><br>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No company created yet.</p>
+
+    {% endif %}
+
+    <br>
+
+    <a href="{% url 'role_home' %}">
+        Dashboard
+    </a>
+
+    <br><br>
+
+    <a href="/">
+        Home
+    </a>
+
+</body>
+
+</html>

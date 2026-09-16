@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HireHub - Job Seeker</title>
+</head>
+
+<body>
+
+    <h1>HireHub</h1>
+
+    <h2>Job Seeker Dashboard</h2>
+
+    <p>
+        Welcome, {{ user.username }}!
+    </p>
+
+    <p>
+        You are logged in as a Job Seeker.
+    </p>
+
+    <p>
+        You can search and apply for jobs.
+    </p>
+
+    <a href="/">
+        Home
+    </a>
+
+    <br><br>
+
+    <form method="POST" action="{% url 'logout' %}">
+
+        {% csrf_token %}
+
+        <button type="submit">
+            Logout
+        </button>
+
+    </form>
+
+</body>
+
+</html>
