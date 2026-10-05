@@ -1,0 +1,153 @@
+/* HireHub — responsive design system */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+
+:root {
+  color-scheme: light;
+  --brand: #2457d6;
+  --brand-dark: #1944b3;
+  --brand-soft: #edf3ff;
+  --ink: #17243b;
+  --muted: #68758b;
+  --line: #e3e9f2;
+  --surface: #ffffff;
+  --page: #f5f7fb;
+  --success: #147d55;
+  --danger: #bd3434;
+  --warning: #9a6500;
+  --radius: 16px;
+  --shadow: 0 12px 34px rgba(26, 45, 82, .08);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 42px clamp(16px, 4vw, 56px) 64px;
+  color: var(--ink);
+  background: radial-gradient(circle at 8% 0%, #e9f0ff 0, transparent 30%), var(--page);
+  font: 15px/1.65 'DM Sans', Arial, sans-serif;
+}
+body::before {
+  position: fixed;
+  z-index: 20;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, #2457d6, #55a7f7, #21a88a);
+  content: '';
+}
+body > * { max-width: 1080px; margin-right: auto; margin-left: auto; }
+
+h1, h2, h3, h4 {
+  color: #152b50;
+  font-family: 'Manrope', 'DM Sans', Arial, sans-serif;
+  line-height: 1.25;
+}
+h1 { margin: 0 auto 10px; font-size: clamp(29px, 4vw, 40px); font-weight: 800; letter-spacing: -1.2px; }
+h2 { margin: 12px auto 22px; font-size: clamp(23px, 3vw, 30px); font-weight: 800; letter-spacing: -.7px; }
+h3 { margin: 22px auto 10px; font-size: 19px; font-weight: 700; }
+h4 { font-size: 16px; }
+p { margin: 9px auto 15px; color: #34435a; }
+strong { color: #172b4d; }
+small, .muted { color: var(--muted); }
+
+/* Links and actions */
+a { color: var(--brand); font-weight: 600; text-decoration: none; transition: color .18s ease; }
+a:hover { color: var(--brand-dark); text-decoration: underline; }
+button, input[type='submit'], .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  background: var(--brand);
+  box-shadow: 0 5px 14px rgba(36, 87, 214, .17);
+  font: 700 14px 'DM Sans', Arial, sans-serif;
+  cursor: pointer;
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+}
+button:hover, input[type='submit']:hover, .button:hover {
+  transform: translateY(-1px);
+  color: #fff;
+  background: var(--brand-dark);
+  box-shadow: 0 8px 18px rgba(36, 87, 214, .2);
+  text-decoration: none;
+}
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid rgba(36, 87, 214, .25);
+  outline-offset: 2px;
+}
+
+/* Forms */
+form {
+  max-width: 760px;
+  margin: 22px auto;
+  padding: 25px clamp(18px, 3vw, 32px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+form p { margin: 0 0 16px; }
+label { display: block; margin: 12px 0 6px; color: #263a5b; font-size: 13px; font-weight: 700; }
+input:not([type='checkbox']):not([type='radio']):not([type='submit']),
+select, textarea {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 43px;
+  padding: 10px 13px;
+  border: 1px solid #d9e1ed;
+  border-radius: 9px;
+  outline: none;
+  color: var(--ink);
+  background: #fff;
+  font: 14px 'DM Sans', Arial, sans-serif;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+input:focus, select:focus, textarea:focus { border-color: #82a7f7; box-shadow: 0 0 0 3px rgba(36, 87, 214, .11); }
+input[type='file'] { padding: 8px; background: #f8faff; }
+input[type='checkbox'], input[type='radio'] { accent-color: var(--brand); }
+textarea { min-height: 120px; resize: vertical; }
+form button { margin-top: 8px; }
+.errorlist { margin: 5px 0 10px; padding-left: 19px; color: var(--danger); font-size: 13px; }
+.helptext { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; }
+
+/* Content surfaces */
+hr { margin: 24px auto; border: 0; border-top: 1px solid var(--line); }
+img { max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 6px 18px rgba(26, 45, 82, .08); }
+table { width: 100%; border-collapse: collapse; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fff; box-shadow: var(--shadow); }
+th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { color: #20365b; background: #edf3ff; font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+body > h1:first-of-type { color: var(--brand); }
+body > h2:first-of-type { margin-top: 10px; }
+body > p, body > h3, body > img, body > table { max-width: 900px; }
+body > h3 { padding: 14px 17px; border: 1px solid var(--line); border-radius: 12px 12px 0 0; background: #fff; }
+body > h3 + p, body > h3 + p + p, body > h3 + p + p + p { padding-right: 17px; padding-left: 17px; background: #fff; }
+body > h3 + p { padding-top: 10px; }
+body > a { display: inline-flex; align-items: center; min-height: 38px; margin: 5px 7px 5px 0; padding: 7px 13px; border: 1px solid #dce6f8; border-radius: 9px; background: #fff; }
+body > a:hover { background: var(--brand-soft); text-decoration: none; }
+
+/* Django message framework */
+.messages { max-width: 760px; margin: 12px auto 18px; }
+.message, .messages li { margin: 0 0 8px; padding: 11px 14px; border: 1px solid #c9dcff; border-radius: 10px; color: #204b9b; background: #eff5ff; list-style: none; }
+.message.success, .messages .success { border-color: #b9e7d0; color: var(--success); background: #effaf4; }
+.message.error, .messages .error { border-color: #f0c5c5; color: var(--danger); background: #fff2f2; }
+.message.warning, .messages .warning { border-color: #f1dfad; color: var(--warning); background: #fff9e9; }
+
+/* Existing pages contain plain pagination links and form controls. */
+.pagination { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 22px auto; }
+.pagination a, .pagination span { padding: 7px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+
+@media (max-width: 640px) {
+  body { padding: 28px 14px 42px; }
+  form { padding: 19px 15px; }
+  h1 { font-size: 29px; }
+  h2 { font-size: 23px; }
+  table { display: block; overflow-x: auto; white-space: nowrap; }
+  body > a { margin: 4px 4px 4px 0; }
+}
